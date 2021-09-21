@@ -1,0 +1,13 @@
+{
+    "type": "project",
+    "description": "Id card parser",
+    "keywords": ["library"],
+    "license": "MIT",
+    "require": {
+        "php": "^7.3|^8.0",
+        "google/apiclient": "^2.11",
+        "guzzlehttp/guzzle": "^7.0.1"
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
