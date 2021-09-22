@@ -1,13 +1,6 @@
 <?php
 
-use GuzzleHttp\Exception\GuzzleException;
-
 class IdCardParser {
-
-    /**
-     * @var Ocr $ocr
-     */
-    protected Ocr $ocr;
 
     /**
      * @var string $text
@@ -26,11 +19,6 @@ class IdCardParser {
         'M' => 'Kişi',
         'W' => 'Qadın',
     ];
-
-    public function __construct()
-    {
-        $this->ocr = new Ocr();
-    }
 
     /**
      * @return array
@@ -69,44 +57,6 @@ class IdCardParser {
             'birth_date'=> $cleanBirthDate->format('d-m-Y'),
             'expire_date'=> $cleanExpireDate->format('d-m-Y'),
         ];
-    }
-
-
-    /**
-     * @param $imagePath
-     * @return array
-     * @throws GuzzleException
-     */
-    public function parsePhoto($imagePath): array
-    {
-
-        $data = [];
-
-        $text = $this->ocr->getTextFromGoogle($imagePath);
-
-        $explode = explode(PHP_EOL, $text);
-
-        foreach ($explode as $value) {
-            if (!empty(trim($value))) {
-                $data[] = $value;
-            }
-        }
-
-        $string = "";
-
-        $data = array_reverse($data);
-
-        $data = array_slice($data, 0, 3);
-
-        $data = array_reverse($data);
-
-        foreach ($data as $value) {
-            $string .= str_replace(' ', '', trim($value));
-        }
-
-        $this->setText($string);
-
-        return $this->parseText();
     }
 
     /**

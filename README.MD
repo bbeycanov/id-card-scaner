@@ -6,9 +6,9 @@
 
 ```php -S localhost:8000```
 
-# Using image 
 
-```$idCardParser->parsePhoto('uploads/ocr.jpeg');```
+# New IdCardParser
+```$idCardParser = new IdCardParser();```
 
 # Using text
 
